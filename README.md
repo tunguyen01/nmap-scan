@@ -20,7 +20,7 @@ Từ cổng đích gửi lại gói tin TCP với cờ RST/ACK thể hiện cổ
 <img src="http://i.imgur.com/CgsIvTa.png">
 Cấu tạo gói tin TCP được gửi đi trong NULL scan.
 
-<img src="http://imgur.com/a/xjqGE.png">
+<img src="http://imgur.com/rLG8sVE.png">
 Từ cổng nguồn gửi các gói tin TCP với trường cờ bằng 0, không có phản hồi thể hiện cổng ở trạng thái ***open***.
 
 
