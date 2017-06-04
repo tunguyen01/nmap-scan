@@ -7,7 +7,7 @@
   * Kỹ thuật này được gọi là quét nửa mở vì chúng ta không hoàn thành kết nối TCP. Chúng ta gửi 1 gói tin TCP như là yêu cầu 1 kết nối thực và chờ đợi một phản hồi lại. Một gói tin chứa SYN/ACK sẽ thể hiện là cổng đang ***open***, một gói tin có chứa RST sẽ thể hiện là cổng đang ***closed***. Sau vài lần truyền lại mà không có hồi đáp thì cổng sẽ được đánh dấu là ***filtered***. 
   
 <img src="http://i.imgur.com/ifSO6YW.png"> 
-*Từ cổng đích gửi lại gói tin SYN/ACK thể hiện cổng ở trạng thái ***open***.*
+*Từ cổng đích gửi lại gói tin SYN/ACK thể hiện cổng ở trạng thái ***open***.
 
 <img src="http://imgur.com/021sAbc.png">
-*Từ cổng đích gửi lại gói tin RST/ACK thể hiện cổng ở trạng thái ***closed***.*
+*Từ cổng đích gửi lại gói tin RST/ACK thể hiện cổng ở trạng thái ***closed***.
