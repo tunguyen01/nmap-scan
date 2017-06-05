@@ -19,16 +19,30 @@ Theo RFC 793,nếu một cổng ở trạng thái ***closed*** thì gói tin đ�
 
 **2.1 NULL scan**
 
-**NULL scan*** là việc gửi gói tin TCP mà trong đó không chứa bất kỳ cờ nào, hay trường cờ bằng 0. Việc này thỏa mãn với RFC nói trên, nếu cổng ở trạng thái ***open*** hay ***filtered*** thì đều không có phản hồi, cổng ở trạng thái ***closed*** thì sẽ có phản hồi với cờ RST. Ưu điểm chính của các loại quét này là chúng có thể lẻn qua một số bức tường lửa không phải trạng thái và bộ định tuyến lọc gói tin. Một ưu điểm khác là loại scan này có vẻ lén lút hơn nhiều so với một SYN scan tuy nhiên hầu hết các sản phẩm IDS hiện đại có thể được định cấu hình để phát hiện chúng. Nhược điểm lớn là không phải tất cả các hệ thống đều tuân theo RFC 793. Một số hệ thống gửi các phản hồi RST tới đầu dò bất kể cổng có mở hay không. Điều này làm cho tất cả các cổng được dán nhãn đóng. Một nhược điểm của scan này là không thể phân biệt các cổng ***open*** từ một số cổng ***filtered*** nhất định, để lại cho bạn với trạng thái **open|filtered**.
+**NULL scan*** là việc gửi gói tin TCP mà trong đó không chứa bất kỳ cờ nào, hay trường cờ bằng 0. Việc này thỏa mãn với RFC nói trên, nếu cổng ở trạng thái ***open*** hay ***filtered*** thì đều không có phản hồi, cổng ở trạng thái ***closed*** thì sẽ có phản hồi với cờ [RST,ACK]. Ưu điểm chính của các loại quét này là chúng có thể lẻn qua một số bức tường lửa không phải trạng thái và bộ định tuyến lọc gói tin. Một ưu điểm khác là loại scan này có vẻ lén lút hơn nhiều so với một SYN scan tuy nhiên hầu hết các sản phẩm IDS hiện đại có thể được định cấu hình để phát hiện chúng. Nhược điểm lớn là không phải tất cả các hệ thống đều tuân theo RFC 793. Một số hệ thống gửi các phản hồi RST tới đầu dò bất kể cổng có mở hay không. Điều này làm cho tất cả các cổng được dán nhãn đóng. Một nhược điểm của scan này là không thể phân biệt các cổng ***open*** từ một số cổng ***filtered*** nhất định, để lại cho bạn với trạng thái **open|filtered**.
 
 <img src="http://i.imgur.com/CgsIvTa.png">
 
-Cấu tạo gói tin TCP được gửi đi trong NULL scan.
+Cấu tạo gói tin TCP được gửi đi trong **NULL scan**.
 <img src="http://imgur.com/rLG8sVE.png">
 
 Từ cổng nguồn gửi các gói tin TCP với trường cờ bằng 0, không có phản hồi thể hiện cổng ở trạng thái ***open*** .
 
 **2.2 FIN scan**
 
-Tương tự **NULL scan**, **FIN scan** cũng tuân theo hệ thống scan sử dụng RFC 793 nhưng thay vì gửi gói tin với trường cờ bằng 0 thì **FIN scan** gửi gói tin TCP với cờ FIN. Do tuân theo RFC 793 nên các trạng thái cổng được scan được trả về giống như với **NULL scan**. Cổng ở trạng thái ***open*** hay ***filtered*** thì không có phản hồi và cổng ở trạng thái ***closed*** được phản hồi với cờ RST. Ưu nhược điểm của **FIN scan** cũng tương tự với **NULL scan**.
+Tương tự **NULL scan**, **FIN scan** cũng tuân theo hệ thống scan sử dụng RFC 793 nhưng thay vì gửi gói tin với trường cờ bằng 0 thì **FIN scan** gửi gói tin TCP với cờ FIN. Do tuân theo RFC 793 nên các trạng thái cổng được scan được trả về giống như với **NULL scan**. Cổng ở trạng thái ***open*** hay ***filtered*** thì không có phản hồi và cổng ở trạng thái ***closed*** được phản hồi với cờ [RST,ACK]. Ưu nhược điểm của **FIN scan** cũng tương tự với **NULL scan**.
+
+**2.3 XMAS scan**
+
+Tương tự **NULL scan** và **FIN scan**, **XMAS scan** cũng tuân theo hệ thống scan sử dụng RFC 793 nhưng thay vì gửi gói tin không có tờ hay gói tin với cờ FIN thì **XMAS scan** gửi gói tin TCP với cờ [FIN,PSH.URG]. Do cũng tuân theo RFC 793 nên các trạng thái cổng được scan được trả về giống như với **NULL scan** và **FIN scan**. Cổng ở trạng thái ***open*** hay ***filtered*** thì không có phản hồi và cổng ở trạng thái ***closed*** được phản hồi với cờ RST. Ưu nhược điểm của **XMAS scan** cũng tương tự với **NULL scan**,**FIN scan**.
+
+<img src="http://imgur.com/4zzJD9H.png">
+
+Cấu tạo gói tin TCP được gửi đi trong **XMAS scan**.
+<img src="http://imgur.com/MEsMg3F.png">
+
+Từ cổng nguồn gửi các gói tin TCP với cờ [FIN,PSH.URG] có phản hồi với cờ [RST,ACK] thể hiện cổng ở trạng thái ***closed*** .
+
+
+
 
