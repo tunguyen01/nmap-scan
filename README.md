@@ -61,6 +61,17 @@ Cấu tạo gói tin TCP được gửi đi trong **XMAS scan**.
 
 Từ cổng nguồn gửi các gói tin TCP với cờ [FIN,PSH.URG] có phản hồi với cờ [RST,ACK] thể hiện cổng ở trạng thái ***closed*** .
 
+**4. Decoy scan(-D)**
+
+**Decoy scan** là một kỹ thuật thực hiện một IP Spoofing (giả mạo). Mục đích nhằm ấn địa chỉ thực sự của kẻ tấn công (scanner).Xét ví dụ cụ thể sau: 
+
+>#nmap -sX -p 111 192.168.1.1 -D 192.168.1.100,192.168.1.200
+
+Sau tham số **-D** là các giá trị IP cụ thể, với mỗi cổng khi scan mục tiêu sẽ nhận đồng thời 3 gói tin trong đó có 1 là của kẻ tấn công và các địa chỉ là *192.168.1.100,192.168.1.200* . Kết quả là mục tiêu sẽ phản hồi với cả 3 địa chỉ IP và có sẽ nghĩ rằng cả 3 IP đang scan mình. Tuy nhiên, khi ta tăng giá trị IP lên hàng trăm IP thì việc tìm ra kẻ tấn công thực sự là rất khó khăn.
+
+<img src="http://imgur.com/U2KtKod.png">
+
+Với ví dụ cụ thể ở trên, các bạn có thể thấy được rằng mục tiêu *192.168.1.1* nhận đồng thời 3 gói tin từ 3 địa chỉ trong đó địa chỉ của kẻ tấn công là 192.168.1.2. Và nhận được phản hồi với cả 3 địa chỉ IP trên. Nhưng ở đây 2 địa chỉ *192.168.1.100* và *192.168.1.200* của mình là địa chỉ ảo nên không có địa chỉ để gói tin gửi đến.
 
 
 
