@@ -32,6 +32,13 @@ Từ cổng nguồn gửi các gói tin TCP với trường cờ bằng 0, khôn
 
 Tương tự **NULL scan**, **FIN scan** cũng tuân theo hệ thống scan sử dụng RFC 793 nhưng thay vì gửi gói tin với trường cờ bằng 0 thì **FIN scan** gửi gói tin TCP với cờ FIN. Do tuân theo RFC 793 nên các trạng thái cổng được scan được trả về giống như với **NULL scan**. Cổng ở trạng thái ***open*** hay ***filtered*** thì không có phản hồi và cổng ở trạng thái ***closed*** được phản hồi với cờ [RST,ACK]. Ưu nhược điểm của **FIN scan** cũng tương tự với **NULL scan**.
 
+<img src="http://imgur.com/caP8POe.png">
+
+Cấu tạo gói tin TCP được gửi đi trong **XMAS scan**.
+<img src="http://imgur.com/9Dd6noh.png">
+
+Từ cổng nguồn gửi các gói tin TCP với cờ [FIN,PSH.URG] có phản hồi với cờ [RST,ACK] thể hiện cổng ở trạng thái ***closed*** .
+
 **2.3 XMAS scan**
 
 Tương tự **NULL scan** và **FIN scan**, **XMAS scan** cũng tuân theo hệ thống scan sử dụng RFC 793 nhưng thay vì gửi gói tin không có tờ hay gói tin với cờ FIN thì **XMAS scan** gửi gói tin TCP với cờ [FIN,PSH.URG]. Do cũng tuân theo RFC 793 nên các trạng thái cổng được scan được trả về giống như với **NULL scan** và **FIN scan**. Cổng ở trạng thái ***open*** hay ***filtered*** thì không có phản hồi và cổng ở trạng thái ***closed*** được phản hồi với cờ RST. Ưu nhược điểm của **XMAS scan** cũng tương tự với **NULL scan**,**FIN scan**.
