@@ -71,7 +71,6 @@ Sau tham số **-D** là các giá trị IP cụ thể, với mỗi cổng khi s
 
 <img src="http://imgur.com/U2KtKod.png">
 
-Với ví dụ cụ thể ở trên, các bạn có thể thấy được rằng mục tiêu *192.168.1.1* nhận đồng thời 3 gói tin từ 3 địa chỉ trong đó địa chỉ của kẻ tấn công là 192.168.1.2. Và nhận được phản hồi với cả 3 địa chỉ IP trên. Nhưng ở đây 2 địa chỉ *192.168.1.100* và *192.168.1.200* của mình là địa chỉ ảo nên không có địa chỉ để gói tin gửi đến.
-
+Với ví dụ cụ thể ở trên, các bạn có thể thấy được rằng mục tiêu *192.168.1.1* nhận đồng thời 3 gói tin từ 3 địa chỉ trong đó địa chỉ của kẻ tấn công là *192.168.1.2*. Và nhận được phản hồi với cả 3 địa chỉ IP trên. Nhưng ở đây 2 địa chỉ *192.168.1.100* và *192.168.1.200* của mình là địa chỉ ảo nên không có địa chỉ để gói tin gửi đến. Các gói tin phản hồi thể hiện trạng thái của cổng phụ thuộc và phương thức scan chúng ta lựa trọn ở trước đó, ở đây mình dùng **XMAS scan(-sX)** và nhận được phản hồi là RST/ACK thể hiện cổng đang ở trạng thái ***closed***.
 
 
